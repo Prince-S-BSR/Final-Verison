@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bd prime --hook-json",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "command": "git add -A && git diff --cached --quiet || { git commit -m \"auto-commit: $(date '+%Y-%m-%d %H:%M:%S')\" -m \"$(git diff --cached --stat)\" && git push origin HEAD; } ; true",
+            "type": "command",
+            "statusMessage": "Auto-committing changes to GitHub..."
+          }
+        ]
+      }
+    ]
+  }
+}
